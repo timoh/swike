@@ -3,6 +3,8 @@ h1 Timeline for user #{current_user.name}
 - if current_user.tweet_queue
   table.table-striped.table-bordered
     thead
+      th User
+      th User handle
       th Tweet content
       th Like
       th Ignore
@@ -10,6 +12,8 @@ h1 Timeline for user #{current_user.name}
     tbody
       - current_user.tweet_queue.tweets.each do |tweet|
         tr
+          td= tweet.payload['user']['name']
+          td= tweet.payload['user']['screen_name']
           td= tweet.payload['text']
           td= link_to 'Like', '/timeline/pop?tweet_id=#{tweet.id}&value=1'
           td= link_to 'Ignore', '/timeline/pop?tweet_id=#{tweet.id}&value=0'

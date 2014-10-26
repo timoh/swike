@@ -10,8 +10,3 @@ p= @user_id
 - else
   p= link_to 'Raw timeline', '/tweets'
   p= button_to 'Logout', '/signout'
-
-- if @tweets
-  ul
-  - @tweets.each do |tweet|
-    li= tweet.to_json

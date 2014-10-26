@@ -1,10 +1,5 @@
 class HomeController < ApplicationController
   def index
-
-    if current_user && session[:user_key] && session[:user_secret]
-      @tweets = TweetQueue.timeline(current_user, Connection.up(session[:user_key], session[:user_secret]))
-    end
-
   end
 
   def tweets_to_json
@@ -13,6 +8,5 @@ class HomeController < ApplicationController
     else
       render json: 'Sign in first!'
     end
-
   end
 end

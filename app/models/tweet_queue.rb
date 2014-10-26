@@ -9,6 +9,8 @@ class TweetQueue
   end
 
   def TweetQueue.build(user, connection)
+    require 'json'
+
     # ensure user has a tweet queue
     if !user.tweet_queue
       tq = TweetQueue.create!
@@ -24,7 +26,7 @@ class TweetQueue
     tweets.each do |tweet|
       new_tweet = Tweet.new 
       new_tweet.tweet_id = tweet.id
-      new_tweet.payload = tweet.to_json
+      new_tweet.payload = JSON.parse(tweet.to_json)
       if new_tweet.save
         # add to tweet queue
         user.tweet_queue.tweets << new_tweet
