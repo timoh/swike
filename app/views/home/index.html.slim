@@ -1,0 +1,17 @@
+h1 Ohai!
+
+- if flash[:notice]
+    div.notice= flash[:notice]
+
+p= @user_id
+
+- if !current_user
+  p= button_to 'Sign in', '/auth/twitter'
+- else
+  p= link_to 'Raw timeline', '/tweets'
+  p= button_to 'Logout', '/signout'
+
+- if @tweets
+  ul
+  - @tweets.each do |tweet|
+    li= tweet.to_json

@@ -10,6 +10,9 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+# API keys
+/config/initializers/api_keys.rb
+
 # bundler state
 /.bundle
 /vendor/bundle/
