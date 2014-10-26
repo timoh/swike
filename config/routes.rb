@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'timeline/index'
+  get 'timeline/pop'
+
   resources :users
 
   get '/tweets', to: 'home#tweets_to_json'

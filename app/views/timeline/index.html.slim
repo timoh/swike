@@ -1,0 +1,16 @@
+h1 Timeline for user #{current_user.name}
+
+- if current_user.tweet_queue
+  table.table-striped.table-bordered
+    thead
+      th Tweet content
+      th Like
+      th Ignore
+      th Dislike
+    tbody
+      - current_user.tweet_queue.tweets.each do |tweet|
+        tr
+          td= tweet.payload['text']
+          td= link_to 'Like', '/timeline/pop?tweet_id=#{tweet.id}&value=1'
+          td= link_to 'Ignore', '/timeline/pop?tweet_id=#{tweet.id}&value=0'
+          td= link_to 'Dislike', '/timeline/pop?tweet_id=#{tweet.id}&value=-1'

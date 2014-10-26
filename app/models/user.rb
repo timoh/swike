@@ -5,7 +5,8 @@ class User
   field :uid, type: String
   field :name, type: String
 
-  has_one :tweet_queue
+  has_one :tweet_queue, dependent: :delete
+  has_many :points, dependent: :delete
 
    def self.create_with_omniauth(auth)
     create! do |user|

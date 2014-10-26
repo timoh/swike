@@ -2,7 +2,7 @@ class Tweet
   include Mongoid::Document
 
   field :payload, type: Hash
-  field :tweet_id, type: Hash
+  field :tweet_id, type: String
   
   has_and_belongs_to_many :tweet_queues
 
