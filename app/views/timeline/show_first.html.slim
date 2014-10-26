@@ -1,0 +1,21 @@
+h1 Timeline for user #{current_user.name}
+
+- if @first_tweet
+
+  p= image_tag @first_tweet.payload['user']['profile_image_url_https']
+
+  p 
+    b= @first_tweet.payload["user"]["name"]
+    | &nbsp; (@
+    = @first_tweet.payload["user"]["screen_name"]
+    | )
+
+  p= @first_tweet.payload["text"]
+
+  - if @first_tweet.payload["entities"]["media"]
+    - @first_tweet.payload["entities"]["media"].each do |media|
+      =image_tag media["media_url"]
+
+  p= link_to 'Like', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=1&redir=play"
+  p= link_to 'Ignore', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=0&redir=play"
+  p= link_to 'Dislike', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=-1&redir=play"

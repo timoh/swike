@@ -1,6 +1,4 @@
 class Connection
-  include Mongoid::Document
-
   def Connection.up(key, secret)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "ME6ruUpP707ZgN0wwISiGIIz2"
@@ -11,5 +9,4 @@ class Connection
 
     return client
   end
-
 end

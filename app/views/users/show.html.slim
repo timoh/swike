@@ -1,0 +1,11 @@
+h1
+  | User&nbsp;
+  = @user.name
+
+- if @user.points
+  ul
+    - @user.points.each do |point|
+      li
+        = point.value
+        |  points: &nbsp;
+        = point.tweet.payload["text"]

@@ -8,6 +8,11 @@ p= @user_id
 - if !current_user
   p= button_to 'Sign in', '/auth/twitter'
 - else
-  p= link_to 'Raw timeline', '/tweets'
-  p= link_to 'Timeline queue', '/timeline'
+
+  p= link_to 'Play!', '/play'
+  p= link_to 'List timeline queue', '/timeline'
+  p= link_to 'List raw timeline', '/tweets'
+
+  p= link_to 'Profile!', "/users/#{current_user.id}"
+
   p= button_to 'Logout', '/signout'

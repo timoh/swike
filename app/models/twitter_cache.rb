@@ -1,5 +1,6 @@
 class TwitterCache
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :cacheparams, type: Array
   field :output, type: Array
@@ -16,7 +17,7 @@ class TwitterCache
       puts '...'
       puts '...'
       puts '...'
-      puts '-------------------- Avoided hitting the Twitter cache!'
+      puts '-------------------- Avoided hitting the Twitter API!'
       puts '...'
       puts '...'
       puts '...'

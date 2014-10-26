@@ -1,11 +1,12 @@
 class TweetQueue
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   belongs_to :user
   has_and_belongs_to_many :tweets
 
   def TweetQueue.timeline(user, connection)
-    tweets = connection.home_timeline
+     tweets = connection.home_timeline
   end
 
   def TweetQueue.build(user, connection)
@@ -39,11 +40,14 @@ class TweetQueue
   def pop(tweet_id, value) # pop a queue by giving it a point value from the user
     tweet = self.tweets.find(tweet_id)
 
-    p = Point.new
-    p.value = value
-    p.user = self.user
-    if p.save!
-      self.tweets.delete(tweet_id)
+    if tweet
+      p = Point.new
+      p.value = value
+      p.user = self.user
+      p.tweet = tweet
+      if p.save!
+        self.tweets.delete(tweet)
+      end
     end
   end
 end
