@@ -5,5 +5,6 @@ namespace :tweets do
     puts "Purging tweet queues: #{TweetQueue.delete_all}"
     puts "Purging points: #{Point.delete_all}"
     puts "Purging tweets: #{Tweet.delete_all}"
+    puts "Purging API cache: #{TwitterCache.delete_all}"
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'timeline/index'
+  get 'timeline', to: 'timeline#index'
   get 'timeline/pop'
 
   resources :users

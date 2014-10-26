@@ -20,12 +20,12 @@ class TweetQueue
     end
 
     # get timeline from Twitter API
-    tweets = connection.home_timeline
+    tweets = TwitterCache.home_timeline(connection)
 
     # save each tweet and if doesn't yet exist, add to queue
     tweets.each do |tweet|
       new_tweet = Tweet.new 
-      new_tweet.tweet_id = tweet.id
+      new_tweet.tweet_id = tweet['id']
       new_tweet.payload = JSON.parse(tweet.to_json)
       if new_tweet.save
         # add to tweet queue
