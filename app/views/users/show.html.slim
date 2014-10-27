@@ -1,9 +1,15 @@
+p= link_to 'Back to main menu', root_url
+
 h1
   | User&nbsp;
   = @user.name
 
 
 h2 Top 5 authors
+p You have liked these authors the most.
+p In the near future, we will recommend you more similar authors to follow based on this data.
+p ..so keep on liking!
+
 - if @user.points
   ul
     - @user.favorite_authors(5).each do |author|
@@ -13,6 +19,10 @@ h2 Top 5 authors
         = author[1]
 
 h2 Bottom 5 authors
+p You have disliked these authors the most.
+p Thus, they are prime candidates for unfollowing.
+p In the near future, we will enable you to unfollow these users right here!
+
 - if @user.points
   ul
     - @user.worst_authors(5).each do |author|
@@ -21,7 +31,10 @@ h2 Bottom 5 authors
         |  points: &nbsp;
         = author[1]
 
+hr
 h2 All user ratings
+p This listing is more for debugging purposes, it shows all of your like/ignore/dislike activity
+
 - if @user.points
   ul
     - @user.points.each do |point|

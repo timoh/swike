@@ -1,18 +1,30 @@
-h1 Ohai!
-
 - if flash[:notice]
     div.notice= flash[:notice]
-
-p= @user_id
+    hr
 
 - if !current_user
+  h1 Ohai!
+  p First things first, please sign in with Twitter!
   p= button_to 'Sign in', '/auth/twitter'
-- else
 
-  p= link_to 'Play!', '/play'
+- if current_user
+  p= button_to 'Logout', '/signout'
+  h1 
+    | Welcome to Swike,&nbsp;
+    =current_user.name
+    | !
+
+  p Swike helps you improve your Twitter feed by having you like/ignore/dislike content.
+  p Using this data, Swike can suggest new users to follow and others to unfollow
+  p As an added benefit, you get a list of tweets you liked, which you can then further process (for instance by sending them to your favorite read later app such as Pocket or Instapaper)
+  p
+    b
+      | So, without further ado..&nbsp;
+      = link_to 'Start curating!', '/play'
+
+  hr
+
+  h2 Other functionality
   p= link_to 'List timeline queue', '/timeline'
   p= link_to 'List raw timeline', '/tweets'
-
   p= link_to 'Profile!', "/users/#{current_user.id}"
-
-  p= button_to 'Logout', '/signout'

@@ -19,3 +19,6 @@ h1 Timeline for user #{current_user.name}
   p= link_to 'Like', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=1&redir=play"
   p= link_to 'Ignore', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=0&redir=play"
   p= link_to 'Dislike', "/timeline/pop?tweet_id=#{@first_tweet.id}&value=-1&redir=play"
+
+h2 When you get tired of curating, admire your results..
+p= link_to 'View results in your profile!', "/users/#{current_user.id}"
