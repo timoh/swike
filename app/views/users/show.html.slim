@@ -2,6 +2,26 @@ h1
   | User&nbsp;
   = @user.name
 
+
+h2 Top 5 authors
+- if @user.points
+  ul
+    - @user.favorite_authors(5).each do |author|
+      li
+        = author[0]
+        |  points: &nbsp;
+        = author[1]
+
+h2 Bottom 5 authors
+- if @user.points
+  ul
+    - @user.worst_authors(5).each do |author|
+      li
+        = author[0]
+        |  points: &nbsp;
+        = author[1]
+
+h2 All user ratings
 - if @user.points
   ul
     - @user.points.each do |point|

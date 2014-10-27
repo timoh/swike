@@ -18,5 +18,57 @@ class User
       end
     end
   end
+
+  def favorite_authors(limit) # return a list of authors (twitter users) with the most likes 
+    authors = Hash.new
+
+    self.points.each do |point|
+      unless point.tweet.payload["user"]["screen_name"]
+        raise 'Tweet has no screen name'
+      end
+
+      if !authors || authors.size == 0
+        handle = point.tweet.payload["user"]["screen_name"]
+        authors[handle] = point.value
+      else
+        if authors[point.tweet.payload["user"]["screen_name"]]
+          authors[point.tweet.payload["user"]["screen_name"]] = authors[point.tweet.payload["user"]["screen_name"]] + point.value
+        else
+          authors[point.tweet.payload["user"]["screen_name"]] = point.value
+        end
+      end
+    end
+
+    sorted_authors_array = authors.sort_by {|k, v| v}
+
+    return sorted_authors_array.reverse.take(limit)
+    # ==> [["authord", 745], ["authorc", 10], ["authora", 9]]
+  end
+
+  def worst_authors(limit) # return a list of authors (twitter users) with the least likes 
+    authors = Hash.new
+
+    self.points.each do |point|
+      unless point.tweet.payload["user"]["screen_name"]
+        raise 'Tweet has no screen name'
+      end
+
+      if !authors || authors.size == 0
+        handle = point.tweet.payload["user"]["screen_name"]
+        authors[handle] = point.value
+      else
+        if authors[point.tweet.payload["user"]["screen_name"]]
+          authors[point.tweet.payload["user"]["screen_name"]] = authors[point.tweet.payload["user"]["screen_name"]] + point.value
+        else
+          authors[point.tweet.payload["user"]["screen_name"]] = point.value
+        end
+      end
+    end
+
+    sorted_authors_array = authors.sort_by {|k, v| v}
+
+    return sorted_authors_array.take(limit)
+    # ==> [["authora", 9], ["authorc", 10], ["authord", 745]]
+  end
   
 end
